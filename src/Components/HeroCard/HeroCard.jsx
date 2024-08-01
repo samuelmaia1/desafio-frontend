@@ -33,16 +33,17 @@ export function HeroCard({hero, heroes}){
             alert('Combate!')
             // Se tiverem sidos selecionados os dois heróis, realiza o combate
             const [hero1, hero2] = selectedHeroes;
-            console.log(hero1)
             const result = calculateCombat(hero1, hero2);
             setCombatResult(result);
-            selectedHeroes = []; 
             setOpen(true)// Isso vai limpar o array para realizar novos combates com dois campeões diferentes
           }
         }
     };
 
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+      setOpen(false)
+      selectedHeroes = []
+    };
 
     const calculateCombat = (hero, oponent) => {
         // Função para calcular o resultado do combate
