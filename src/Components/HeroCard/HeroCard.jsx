@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import './HeroCard.css'
 import { Button, Modal, Box, Typography } from '@mui/material';
 import {Combat} from '../CombatCard/Combat.jsx'
+import { Link } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
@@ -13,26 +14,34 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-  };
+  };  
 
-  
+let selectedHeroes = []
 
 export function HeroCard({hero, heroes}){
-    const [open, setOpen] = useState(false);
-    const [combatResults, setCombatResults] = useState([]);
+    const [open, setOpen] = useState(false)
+    const [combatResult, setCombatResult] = useState(null)
 
     const handleOpen = () => {
-        const results = heroes.map(oponent => ({
-            hero,
-            oponent,
-            result: calculateCombat(hero, oponent),
-        }));
-        setCombatResults(results);
-        setOpen(true);
+        alert('Selecionado!')
+        if (selectedHeroes.length < 2) {
+        // Aqui vai adicionar o herói selecionado caso não tenham sido selecionados os 2
+          selectedHeroes.push(hero);
+          if (selectedHeroes.length === 2) {
+            alert('Combate!')
+            // Se tiverem sidos selecionados os dois heróis, realiza o combate
+            const [hero1, hero2] = selectedHeroes;
+            console.log(hero1)
+            const result = calculateCombat(hero1, hero2);
+            setCombatResult(result);
+            selectedHeroes = []; 
+            setOpen(true)// Isso vai limpar o array para realizar novos combates com dois campeões diferentes
+          }
+        }
     };
+
     const handleClose = () => setOpen(false);
 
     const calculateCombat = (hero, oponent) => {
@@ -48,11 +57,11 @@ export function HeroCard({hero, heroes}){
         }
     
         if (hPoints > oPoints) {
-          return `${hero.name} wins!`;
+          return `${hero.name} vence!`;
         } else if (oPoints > hPoints) {
-          return `${oponent.name} wins!`;
+          return `${oponent.name} vence!`;
         } else {
-          return 'Draw!';
+          return 'Empate!';
         }
       };
 
@@ -62,17 +71,24 @@ export function HeroCard({hero, heroes}){
                 <CardContent>
                     <div className="card-content-apresentation">
                         <h3>{hero.name}</h3>
-                        <img src={hero.images.sm} alt="" />
+                        <img src={hero.images.sm} alt="" className='card-image'/>
                     </div>
-                    <p>Inteligência: {hero.powerstats.intelligence}</p>
-                    <p>Força: {hero.powerstats.strength}</p>
-                    <p>Velocidade: {hero.powerstats.speed}</p>
-                    <p>Durabilidade: {hero.powerstats.durability}</p>
-                    <p>Poder: {hero.powerstats.power}</p>
-                    <p>Combate: {hero.powerstats.combat}</p>
-                    <Button variant="contained" className='button' onClick={handleOpen}>
-                        Conferir combates
-                    </Button>
+                    <p>🧠 Inteligência: {hero.powerstats.intelligence}</p>
+                    <p>💪 Força: {hero.powerstats.strength}</p>
+                    <p>🏃 Velocidade: {hero.powerstats.speed}</p>
+                    <p>🏋️‍♂️ Durabilidade: {hero.powerstats.durability}</p>
+                    <p>⚡  Poder: {hero.powerstats.power}</p>
+                    <p>🥊 Combate: {hero.powerstats.combat}</p>
+                    <div className="container-buttons">
+                      <Button variant="contained" className='button' onClick={handleOpen}>
+                          Escolher campeão
+                      </Button>
+                      <Link to={`/${hero.id}`}>
+                        <Button variant="contained" className='button'>
+                            Página do campeão
+                        </Button>
+                      </Link>
+                    </div>
                 </CardContent>
             </Card>
 
@@ -81,19 +97,14 @@ export function HeroCard({hero, heroes}){
                 onClose={handleClose}
                 aria-labelledby="modal-title"
                 aria-describedby="modal-description"
+                className='combat-modal'
             >
-                <Box sx={style}>
+                <Box className='modal-body'>
                 <Typography id="modal-title" variant="h6" component="h2">
-                    Combates
+                    Resultado do combate!
                 </Typography>
-                {combatResults.map((result, index) => (
-                    <div key={index}>
-                    <Typography variant="body1">
-                        {result.hero.name} vs {result.oponent.name}: {result.result}
-                    </Typography>
-                    </div>
-                ))}
-                <Button onClick={handleClose} variant="contained" sx={{ mt: 2 }}>
+                {combatResult}
+                <Button onClick={handleClose} variant="contained" sx={{ mt: 2 }} className='close-modal'>
                     Close
                 </Button>
                 </Box>

@@ -1,3 +1,7 @@
+.container{
+    min-width: 100%;
+}
+
 .container-heroes{
     margin-top: 2rem;
     display: flex;
@@ -6,6 +10,19 @@
     gap: 1.5rem;
 }
 
-.hero{
-    text-decoration: none;
+.input-search{
+    width: 25rem;
+    border: 2px solid #8257E5 !important;
+    border-radius: 5px;
+    outline: none;
+    color: #fff;
+}
+
+.input-search::placeholder{
+    color: #fff;
+}
+
+.input-search:focus{
+    border: 1px solid #8257E5;
+    box-shadow: 0 0 10px rgba(85, 25, 182, 0.5);
 }

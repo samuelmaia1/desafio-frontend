@@ -6,7 +6,9 @@ import { Heroes } from './Components/Heroes/Heroes'
 function App() {
   return (
     <>
-      {/* <Header/> */}
+      <div className="apresentation">
+        <h1 className='apresentation-title'>Bem vindo à zona de combate!</h1>
+      </div>
       <Heroes/>
     </>
   )

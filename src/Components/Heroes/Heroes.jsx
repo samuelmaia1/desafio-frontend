@@ -3,9 +3,13 @@ import { useEffect } from "react"
 import {HeroCard} from '../HeroCard/HeroCard.jsx'
 import './Heroes.css'
 import { Link } from "react-router-dom"
+import { Autocomplete } from "@mui/material"
+import { Spinner } from "../LoadingSpinner/Spinner.jsx"
 
 
 export function Heroes(){
+    const [isLoading, setIsLoading] = useState(true)
+
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => setOpen(true);
@@ -30,6 +34,7 @@ export function Heroes(){
             const data = await response.json()
 
             setHeroes(data)
+            setIsLoading(false)
         }
 
         getHeroes()
@@ -51,31 +56,28 @@ export function Heroes(){
 
     return(
         <>
-            <div >
+            <div className="container">
+                <form>
+                    <input type="text" placeholder='Pesquiser herói...' onChange={handleSearch} value={search} className="input-search"/>
+                </form>
 
-            <form>
-                <input type="text" placeholder='Pesquiser herói...' onChange={handleSearch} value={search}/>
-            </form>
-
-                <div className="container-heroes">
+                {
+                    isLoading?
+                    <Spinner/>
+                    :
+                    <div className="container-heroes">
                     {
                         filtered?
                         filteredHeroes?.map((hero) => (
-                            <Link className="hero">
-                                <HeroCard key={hero.id} hero={hero} heroes={heroes}/>
-                            </Link>
+                            <HeroCard key={hero.id} hero={hero} heroes={heroes}/>
                         ))
                         :
                         heroes.map((hero, heroes) => (
-                            <Link className="hero">
-                                <HeroCard key={hero.id} hero={hero} heroes={heroes}/>
-                            </Link>
-                            
+                            <HeroCard key={hero.id} hero={hero} heroes={heroes}/>
                         ))
                     }
-                </div>
-
-                
+                </div>    
+            }
             </div>
         </>
     )
