@@ -1,8 +1,26 @@
-# React + Vite
+# Título
+Simulador de combate entre heróis.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Sobre o projeto
+Este projeto é um desafio do processo seletivo da empresa AZAP SISTEMAS PARA LOGISTICA.
 
-Currently, two official plugins are available:
+## Construção: 
+- HTML;
+- CSS;
+- JavaScript;
+- React;
+- MaterialUI;
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Pré-requisitos para funcionamento:
+- Ter o Node.js instalado na sua maquina para utilizar o npm.
+
+## Instruções para execução
+1. Faça o clone do projeto;
+2. Abra a pasta raiz no terminal e digite o comando: 
+```
+npm run dev
+```
+3. Neste momento, será disponibilizado um link para abrir o projeto que estará rodando no localhost.
+
+## Link do deploy
+https://desafio-frontend-ten.vercel.app/
