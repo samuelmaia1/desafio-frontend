@@ -1,0 +1,25 @@
+.header nav{
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    font-weight: 600;
+    
+}
+
+.nav-link{
+    text-decoration: none;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.nav-link:hover{
+    color: #8D4CF9;
+}
+
+form{
+    margin-top: 1.5rem;
+    display: flex;
+    gap: .5rem;
+    color: #8D4CF9;
+}
+

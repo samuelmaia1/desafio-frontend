@@ -1,0 +1,33 @@
+.card-hero{
+    padding: 0 1rem;
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem !important; 
+    background-color: transparent !important;
+    color: #fff !important; 
+    border: 2px solid #8257E5 !important;
+}
+
+.card-hero:hover{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, #8D4CF9 0px 8px 16px -8px;
+    cursor: pointer;
+}
+
+.card-content-apresentation{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #1232A4 0%, #8D4CF9 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.button{
+    background-color: #8D4CF9 !important;
+}

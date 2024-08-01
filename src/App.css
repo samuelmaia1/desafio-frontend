@@ -1,0 +1,19 @@
+#root {
+  max-width: 100vw;
+  padding: 2rem;
+}
+
+form{
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+input{
+  background-color: transparent;
+  border: 2px solid #8D4CF9;
+  width: 15rem;
+  padding: .5rem;
+  border-radius: 8px;
+}
